@@ -1,0 +1,9 @@
+[package]
+name = "sudoku_generator"
+version = "0.1.0"
+edition = "2021"
+author = "CodeINN95612"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
