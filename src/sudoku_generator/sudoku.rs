@@ -16,12 +16,12 @@ impl Sudoku {
         }
     }
 
-    pub fn empty(&mut self) {
+    pub fn clear(&mut self) {
         self.grid = Default::default()
     }
 
-    pub fn generate(&mut self) {
-        self.empty();
+    pub fn fill(&mut self) {
+        self.clear();
 
         let mut rng = thread_rng();
 
@@ -33,8 +33,12 @@ impl Sudoku {
             while col < GRID_SIZE {
                 it += 1;
                 if it > 50 {
-                    self.grid[row] = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+                    self.grid[row] = Default::default();
                     row -= 1;
+                    if row > 1 {
+                        self.grid[row] = Default::default();
+                        row -= 1;
+                    }
                     break;
                 }
 
@@ -52,15 +56,33 @@ impl Sudoku {
         }
     }
 
+    pub fn remove(&mut self) {
+        let mut rng = thread_rng();
+
+        for _ in 0..17 {
+            let (mut row, _) = (0..9).enumerate().choose(&mut rng).unwrap();
+            let (mut col, _) = (0..9).enumerate().choose(&mut rng).unwrap();
+            while self.grid[row][col] == 0 {
+                (row, _) = (0..9).enumerate().choose(&mut rng).unwrap();
+                (col, _) = (0..9).enumerate().choose(&mut rng).unwrap();
+            }
+            self.grid[row][col] = 0;
+        }
+    }
+
     pub fn print(&self) {
-        println!("======SUDOKU======");
+        println!("======SUD OKU======");
         for row in self.grid {
             print!("|");
             for cell in row {
-                print!("{cell}|");
+                if cell == 0 {
+                    print!(" |");
+                } else {
+                    print!("{}|", cell);
+                }
             }
             println!();
         }
-        println!("================")
+        println!("===================")
     }
 }

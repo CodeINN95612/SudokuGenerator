@@ -1,12 +1,12 @@
-use sudoku_generator::{sudoku::Sudoku, sudoku_validator::SudokuValidator};
+use sudoku_generator::sudoku::Sudoku;
 
 mod sudoku_generator;
 
 fn main() {
     let mut sudoku = Sudoku::new();
-    for _ in 0..1 {
-        sudoku.generate();
+    for _ in 0..10 {
+        sudoku.fill();
+        sudoku.remove();
         sudoku.print();
-        println!("Is Valid: {}", SudokuValidator::is_valid(&mut sudoku.grid));
     }
 }
