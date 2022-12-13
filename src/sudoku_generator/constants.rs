@@ -1,3 +1,6 @@
+use std::ops::RangeInclusive;
+
 pub const GRID_SIZE: usize = 9;
 
-pub type Grid = [[u8; GRID_SIZE]; GRID_SIZE];
+pub type Row = [u8; GRID_SIZE];
+pub type Grid = [Row; GRID_SIZE];

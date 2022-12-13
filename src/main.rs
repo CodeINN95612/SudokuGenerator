@@ -4,6 +4,8 @@ mod sudoku_generator;
 
 fn main() {
     let mut sudoku = Sudoku::new();
-    sudoku.generate();
-    sudoku.print();
+    for _ in 0..10 {
+        sudoku.generate();
+        sudoku.print();
+    }
 }
