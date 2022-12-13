@@ -26,14 +26,14 @@ impl SudokuValidator {
         }
 
         //Validate Block
-        let posRow = if row < 3 {
+        let pos_row = if row < 3 {
             0
         } else if row < 6 {
             3
         } else {
             6
         };
-        let posCol = if col < 3 {
+        let pos_col = if col < 3 {
             0
         } else if col < 6 {
             3
@@ -42,8 +42,8 @@ impl SudokuValidator {
         };
 
         let mut block: Vec<u8> = Vec::new();
-        for i in posRow..posRow + 3 {
-            for j in posCol..posCol + 3 {
+        for i in pos_row..pos_row + 3 {
+            for j in pos_col..pos_col + 3 {
                 block.push(grid[i][j]);
             }
         }

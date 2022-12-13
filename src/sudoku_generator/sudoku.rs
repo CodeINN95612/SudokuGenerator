@@ -1,7 +1,7 @@
 use rand::prelude::*;
 
 use super::{
-    constants::{Grid, Row, GRID_SIZE},
+    constants::{Grid, GRID_SIZE},
     sudoku_validator::SudokuValidator,
 };
 
