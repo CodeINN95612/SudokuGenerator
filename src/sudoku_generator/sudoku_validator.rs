@@ -50,6 +50,52 @@ impl SudokuValidator {
         if block.contains(&number) {
             return false;
         }
+
         return true;
+    }
+
+    pub fn is_valid(grid: &Grid) -> bool {
+        for row in grid {
+            if !Self::is_group_valid(&row.clone().to_vec()) {
+                return false;
+            }
+        }
+
+        for col in 0..GRID_SIZE {
+            let mut column = Vec::new();
+            for row in 0..GRID_SIZE {
+                column.push(grid[row][col]);
+            }
+            if !Self::is_group_valid(&column) {
+                return false;
+            }
+        }
+
+        for i in [0, 3, 6] {
+            for j in [0, 3, 6] {
+                let mut block: Vec<u8> = Vec::new();
+                for i in i..(i + 3) {
+                    for j in j..(j + 3) {
+                        block.push(grid[i][j]);
+                    }
+                }
+
+                if !Self::is_group_valid(&block) {
+                    return false;
+                }
+            }
+        }
+
+        true
+    }
+
+    pub fn is_group_valid(group: &Vec<u8>) -> bool {
+        let mut numbers: Vec<u8> = (1..=(GRID_SIZE as u8)).collect();
+
+        for num in group {
+            numbers = numbers.into_iter().filter(|n| n != num).collect();
+        }
+
+        numbers.is_empty()
     }
 }

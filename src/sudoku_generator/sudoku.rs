@@ -6,7 +6,7 @@ use super::{
 };
 
 pub struct Sudoku {
-    grid: Grid,
+    pub grid: Grid,
 }
 
 impl Sudoku {
